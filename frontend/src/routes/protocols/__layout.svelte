@@ -34,7 +34,7 @@
 </script>
 
 <svelte:head>
-  <title>{$activeCategory}: {meta.title} | KitDocs</title>
+  <title>{$activeCategory}: {meta.title} | Chait Lab Protocols</title>
   <meta name="description" content={meta.description} />
 </svelte:head>
 
