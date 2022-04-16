@@ -4,7 +4,7 @@
   export function load() {
     return {
       status: 307,
-      redirect: "/docs/immunoaffinity-purifications-of-protein-complexes/conjugation-of-magnetic-beads",
+      redirect: "/tutorials/native-MS/native-ms-for-cryo-em",
     };
   }
 </script>

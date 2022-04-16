@@ -1,7 +1,7 @@
 <script context="module">
   export const prerender = true;
 
-  export const load = createKitDocsLoader({ sidebar: "/docs" });
+  export const load = createKitDocsLoader({ sidebar: "/tutorials" });
 </script>
 
 <script>
@@ -24,7 +24,10 @@
 
   /** @type {import('@svelteness/kit-docs').NavbarConfig} */
   const navbar = {
-    links: [{ title: "Documentation", slug: "/docs", match: /\/docs/ }],
+    links: [
+      { title: "Protocols", slug: "/protocols", match: /\/protocols/ },
+      { title: "Tutorials", slug: "/tutorials", match: /\/tutorials/ },
+    ],
   };
 
   const { activeCategory } = createSidebarContext(sidebar);
