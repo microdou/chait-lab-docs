@@ -1,0 +1,81 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/docker-from-docker-compose
+{
+	"name": "Chait-Lab-Docs",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	// Use this environment variable if you need to bind mount your local source code into a new container.
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	},
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"editor.rulers": [
+			120
+		],
+		"editor.formatOnSave": false,
+		"emeraldwalk.runonsave": {
+			"commands": [
+				{
+					"match": ".*",
+					"isAsync": true,
+					"cmd": "docker-compose -f .devcontainer/docker-compose.services.yml run --rm frontend npx prettier --ignore-path .gitignore --ignore-path .prettierignore --write --plugin-search-dir=. `echo ${relativeFile} | cut -d'/' -f2-` | sed 's/\\x1B\\[[0-9;]\\{1,\\}[A-Za-z]//g'"
+				}
+			]
+		},
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"editor.bracketPairColorization.enabled": true
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"emeraldwalk.runonsave",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"svelte.svelte-vscode",
+		"ardenivanov.svelte-intellisense",
+		"capaj.vscode-standardjs-snippets",
+		"fivethree.vscode-svelte-snippets",
+		"pkief.material-icon-theme",
+		"xabikos.javascriptsnippets",
+		"zh9528.file-size",
+		"usernamehw.errorlens",
+		"naumovs.color-highlight",
+		"royaction.color-manager",
+		"wayou.vscode-todo-highlight",
+		"alefragnani.bookmarks",
+		"pflannery.vscode-versionlens",
+		"uloco.theme-bluloco-light",
+		"mhutchie.git-graph",
+		"eamodio.gitlens",
+		"aaron-bond.better-comments",
+		"ldez.ignore-files",
+		"bradlc.vscode-tailwindcss",
+		"ms-azuretools.vscode-docker",
+		"irongeek.vscode-env",
+		"antfu.iconify",
+		"gruntfuggly.todo-tree",
+		"fabiospampinato.vscode-todo-plus",
+		"jock.svg",
+		"sidthesloth.svg-snippets",
+		"silvenon.mdx",
+		"mutantdino.resourcemonitor",
+		"yzhang.markdown-all-in-one",
+		"edwardhjp.vscode-author-generator"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "docker --version",
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"docker-from-docker": "20.10",
+		"node": "lts"
+	},
+	"postStartCommand": ".devcontainer/scripts/build-containers.sh",
+	"postAttachCommand": ".devcontainer/scripts/start-containers.sh"
+}

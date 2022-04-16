@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  frontend:
+    image: chait/frontend
+    container_name: chait-frontend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    command: sh -c "npm ci || npm i && npm run dev -- --host"
+    volumes:
+      - ${LOCAL_WORKSPACE_FOLDER}/frontend:/app

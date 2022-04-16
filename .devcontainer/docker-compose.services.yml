@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  frontend:
+    extends:
+      file: ../frontend/docker-compose.yml
+      service: frontend
