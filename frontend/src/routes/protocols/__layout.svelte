@@ -15,6 +15,7 @@
   // import SvelteLogo from "$lib/img/svelte-horizontal.svg?raw";
 
   import { Button, KitDocs, KitDocsLayout, createKitDocsLoader, createSidebarContext } from "@svelteness/kit-docs";
+  import LogoButton from "../_components/logoButton.svelte";
 
   /** @type {import('@svelteness/kit-docs').MarkdownMeta} */
   export let meta;
@@ -41,7 +42,7 @@
 <KitDocs {meta}>
   <KitDocsLayout {navbar} {sidebar}>
     <div class="logo" slot="navbar-left">
-      <Button href="/">Chait Lab</Button>
+      <LogoButton />
     </div>
 
     <slot />

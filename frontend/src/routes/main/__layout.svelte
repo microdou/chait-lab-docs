@@ -1,7 +1,7 @@
 <script context="module">
   export const prerender = true;
 
-  export const load = createKitDocsLoader({ sidebar: "/tutorials" });
+  export const load = createKitDocsLoader({ sidebar: "/main" });
 </script>
 
 <script>
@@ -14,7 +14,7 @@
 
   // import SvelteLogo from "$lib/img/svelte-horizontal.svg?raw";
 
-  import { KitDocs, KitDocsLayout, createKitDocsLoader, createSidebarContext } from "@svelteness/kit-docs";
+  import { Button, KitDocs, KitDocsLayout, createKitDocsLoader, createSidebarContext } from "@svelteness/kit-docs";
   import LogoButton from "../_components/logoButton.svelte";
 
   /** @type {import('@svelteness/kit-docs').MarkdownMeta} */
