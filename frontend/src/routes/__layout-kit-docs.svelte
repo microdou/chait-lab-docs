@@ -1,7 +1,13 @@
 <script context="module">
   export const prerender = true;
 
-  export const load = createKitDocsLoader({ sidebar: "/tutorials" });
+  export const load = createKitDocsLoader({
+    sidebar: {
+      "/": null,
+      "/protocols": "/protocols",
+      "/tutorials": "/tutorials",
+    },
+  });
 </script>
 
 <script>
@@ -10,18 +16,17 @@
   import "@svelteness/kit-docs/client/styles/fonts.css";
   import "@svelteness/kit-docs/client/styles/theme.css";
   import "@svelteness/kit-docs/client/styles/vars.css";
-  import "../../app.css";
+  import "../app.css";
 
-  // import SvelteLogo from "$lib/img/svelte-horizontal.svg?raw";
+  import LogoButton from "./_components/logoButton.svelte";
 
-  import { KitDocs, KitDocsLayout, createKitDocsLoader, createSidebarContext } from "@svelteness/kit-docs";
-  import LogoButton from "../_components/logoButton.svelte";
+  import { Button, KitDocs, KitDocsLayout, createKitDocsLoader, createSidebarContext } from "@svelteness/kit-docs";
 
-  /** @type {import('@svelteness/kit-docs').MarkdownMeta} */
-  export let meta;
+  /** @type {import('@svelteness/kit-docs').MarkdownMeta | null} */
+  export let meta = null;
 
-  /** @type {import('@svelteness/kit-docs').ResolvedSidebarConfig} */
-  export let sidebar;
+  /** @type {import('@svelteness/kit-docs').ResolvedSidebarConfig | null} */
+  export let sidebar = null;
 
   /** @type {import('@svelteness/kit-docs').NavbarConfig} */
   const navbar = {
@@ -35,8 +40,12 @@
 </script>
 
 <svelte:head>
-  <title>{$activeCategory}: {meta.title} | Chait Lab Tutorials</title>
-  <meta name="description" content={meta.description} />
+  {#if meta?.title}
+    <title>{$activeCategory ? `${$activeCategory}: ` : ""}{meta.title} | Chait Lab Docs</title>
+  {/if}
+  {#if meta?.description}
+    <meta name="description" content={meta.description} />
+  {/if}
 </svelte:head>
 
 <KitDocs {meta}>
